@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+mybatis:
+  configuration:
+    call-setters-on-nulls: true #设置返回字段不为空，前端不报错
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/javaee?serverTimezone=GMT%2B8&amp&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 111111
+
+  jackson:
+    time-zone: GMT+8
+  thymeleaf:
+    cache: false
+#    prefix: classpath:/templates/
+#    suffix: .html
+  web:
+    resources:
+      static-locations: classpath:/static/,classpath:resources/templates/,file:${photo.file.dir} #暴露哪些资源可以通过项目名访问
+
+  mvc:
+    static-path-pattern: /static/**
+

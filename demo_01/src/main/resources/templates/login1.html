@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" th:href="@{../static/css/login.css}">
+</head>
+
+<body>
+<div id="loginDiv" style="height: 350px">
+    <form th:action="@{/users/loginCheck}" method="post" id="form">
+        <h1 id="loginMsg">LOGIN IN</h1>
+        <p>用户名:<input id="username" name="username"  type="text"></p>
+
+        <p>密码:<input id="password" name="password"  type="password">
+        <div id="subDiv">
+            <input type="submit" class="button" value="login up">
+            <input type="reset" class="button" value="reset">&nbsp;&nbsp;&nbsp;
+        <a th:action="@{users/register}" href="register">注册</a>
+        </div>
+    </form>
+</div>
+
+
+
+</body>
+
+</html>

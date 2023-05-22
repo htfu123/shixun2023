@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>emplist</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" th:href="@{../static/css/style.css}" >
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="top_content">
+				<div id="header">
+					<div id="rightheader">
+						<p>
+							2023/4/27
+							<br />
+							<a th:if="${session.username!=null}" th:href="@{/users/login1}">安全退出</a>
+							<a th:if="${session.username==null}" th:href="@{/login}">点我登录</a>
+						</p>
+					</div>
+					<div id="topheader">
+						<h1 id="title">
+							<a href="#">商品管理系统</a>
+						</h1>
+					</div>
+					<div id="navigation">
+					</div>
+				</div>
+				<div id="content">
+					<p id="whereami">
+					</p>
+					<h1>
+						欢迎 <span th:if="${session.username!=null}" th:text="${session.username}"></span>
+							<span th:if="${session.username==null}" >游客</span>!
+					</h1>
+					<table class="table">
+						<tr class="table_header">
+							<td>
+								编号
+							</td>
+							<td>
+								商品名
+							</td>
+							<td>
+								出发地
+							</td>
+							<td>
+								到达地
+							</td>
+							<td>
+								订单生成日期
+							</td>
+							<td>
+								操作
+							</td>
+						</tr>
+						<tr th:each="cargo,state:${cargoList}"  th:class="${state.odd?'row1':'row2'}">
+							<td>
+								<span th:text="${cargo.cargo_id}"></span>
+							</td>
+							<td>
+								<span th:text="${cargo.cargo_name}"></span>
+							</td>
+							<td>
+								<img th:text="${cargo.cargo_start}" >
+							</td>
+							<td>
+								<span th:text="${cargo.cargo_end}"></span>
+							</td>
+							<td>
+								<span th:text="${#dates.format(cargo.cargo_time,'yyyy/MM/dd')}"></span>
+							</td>
+							<td>
+								<a href="javascript:;" th:onclick="'deleteEmployee('+${cargo.cargo_id}+')'">删除</a>
+<!--								<a th:href="@{/employee/detail?id=}+${employee.id}+'&name='+${employee.name}">更新</a>-->
+<!--								<a th:href="@{/employee/detail(id=${employee.id},name=${employee.name})}">更新</a>-->
+<!--								<a th:href="@{/employee/detail(id=${cargo.cargo_id})}">更新</a>-->
+
+							</td>
+						</tr>
+						<script>
+							function deleteEmployee(id){
+								console.log(id);
+								if(window.confirm('确定要删除这条记录吗?')){
+									location.href='[[@{/cargo/delete?id=}]]'+id;
+								}
+							}
+						</script>
+					</table>
+					<p>
+						<input type="button" class="button" value="添加" onclick="addEmp()"/>
+						<script>
+							function addEmp(){
+								location.href = '[[@{/addEmp}]]';
+							}
+						</script>
+					</p>
+				</div>
+			</div>
+			<div id="footer">
+				<div id="footer_bg">
+				ABC@126.com
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
