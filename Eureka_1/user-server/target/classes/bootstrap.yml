@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    config:
+      # ????
+      uri: http://127.0.0.1:8000
+      # ?? {label} ???? Git ???
+      label: master
+      # ?? {application} ??
+      name: system
+      # ?? {profile} ??
+      profile: dev

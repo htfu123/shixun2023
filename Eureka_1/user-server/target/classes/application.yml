@@ -1,0 +1,54 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /
+mybatis:
+  configuration:
+    call-setters-on-nulls: true #设置返回字段不为空，前端不报错
+spring:
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          # 仓库地址
+#          uri: https://gitee.com/a1656976718/sos
+#          # 对应 {label} 部分，即 Git 的分支
+#          default-label: master
+#          # 仓库文件夹名称，多个以逗号分隔
+#          search-paths: config-repo
+#          # git 仓库用户名（公开库可以不用填写）
+#          username:
+#          # git 仓库密码（公开库可以不用填写）
+#          password:
+  sleuth:
+    enabled: true
+  zipkin:
+    base-url: http://localhost:9411
+  application:
+    name: userserver #服务注册名称
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/javaee?serverTimezone=GMT%2B8&amp&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 111111
+
+  jackson:
+    time-zone: GMT+8
+  thymeleaf:
+    cache: false
+  #    prefix: classpath:/templates/
+  #    suffix: .html
+  web:
+    resources:
+      static-locations: classpath:/static/,classpath:resources/templates/,file:${photo.file.dir} #暴露哪些资源可以通过项目名访问
+
+  mvc:
+    static-path-pattern: /static/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10086/eureka/ #服务注册地址
+
+
